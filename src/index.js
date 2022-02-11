@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './containers/App';
-import { createStore } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux';
-
+import { logActions } from './middleware';
+import thunk from 'redux-thunk';
 import pokemonReducer from './reducers/pokemonReducer';
 
 import './index.css';
 
-const store = createStore(pokemonReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const composeEnhancers  = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const composedEnhancers = composeEnhancers (
+    applyMiddleware(thunk, logActions)
+);
+
+const store = createStore(
+    pokemonReducer, 
+    composedEnhancers 
+);
 
 ReactDOM.render(
     <Provider store={store}>

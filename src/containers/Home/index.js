@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import Searcher from '../../components/Searcher';
 import PokemonList from '../../components/PokemonList';
 import { useDispatch, useSelector } from 'react-redux';
-import getPokemons from '../../api/getPokemons';
-import { setPokemon } from '../../actions';
+import { getPokemonWithDeatils } from '../../actions';
 import './styles.css';
 
 
@@ -12,9 +11,8 @@ function Home() {
   const list = useSelector(state => state.list);
 
   useEffect(() => {
-    getPokemons(151)
-    .then(response => response.json())
-    .then(data => dispatch(setPokemon(data.results)));
+    // getPokemons(151)
+    dispatch(getPokemonWithDeatils())
   }, []);
 
   return (
