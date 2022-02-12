@@ -5,7 +5,7 @@ import { createStore, compose, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux';
 import { logActions } from './middleware';
 import thunk from 'redux-thunk';
-import pokemonReducer from './reducers/pokemonReducer';
+import rootReducer from './reducers/rootReducer';
 
 import './index.css';
 
@@ -16,7 +16,7 @@ const composedEnhancers = composeEnhancers (
 );
 
 const store = createStore(
-    pokemonReducer, 
+    rootReducer, 
     composedEnhancers 
 );
 

@@ -9,8 +9,8 @@ import './styles.css';
 
 function Home() {
   const dispatch = useDispatch();
-  const list = useSelector(state => state.list);
-  const loading = useSelector(state => state.loading);
+  const list = useSelector(state => state.pokemon.get('list').toJS());
+  const loading = useSelector(state => state.ui.get('loading'));
 
   useEffect(() => {
     // getPokemons(151)

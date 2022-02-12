@@ -1,35 +1,19 @@
-import { SET_POKEMON, SET_ERROR, TOGGLE_LOADER, CLEAR_ERROR } from "../actions/type"
+import { SET_POKEMON, SET_FAVORITE } from "../actions/type"
+import { fromJS } from "immutable"
 
-const initialState = {
+const initialState = fromJS({
     list: [],
-    error: '',
-    loading: false,
-    favorites: []
-}
+})
 
 const pokemonReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_POKEMON:
-            return {
-                ...state,
-                list: action.payload
-            }
-        case SET_ERROR:
-            return {
-                ...state,
-                error: action.payload.message
-            }
-        case CLEAR_ERROR:
-            return {
-                ...state,
-                error: ''
-            }
-        case TOGGLE_LOADER:
-            console.log(state)
-            return {
-                ...state,
-                loading: !state.loading
-            }
+            return state.set('list', fromJS(action.payload))
+        case SET_FAVORITE:
+            const index = state.get('list').findIndex(pokemon => pokemon.get('id') === action.payload)
+            const isFavorite = state.getIn(['list', index, 'favorite']);
+
+            return state.setIn(['list', index, 'favorite'], !isFavorite)
         default:
             return state;
     }
