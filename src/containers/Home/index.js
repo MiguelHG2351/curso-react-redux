@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Searcher from '../../components/Searcher';
 import PokemonList from '../../components/PokemonList';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPokemonWithDeatils } from '../../actions';
+import { fetchPokemons } from '../../actions';
 import './styles.css';
 
 
@@ -12,7 +12,7 @@ function Home() {
 
   useEffect(() => {
     // getPokemons(151)
-    dispatch(getPokemonWithDeatils())
+    dispatch(fetchPokemons())
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import { SET_POKEMON } from "../actions/type"
+import { SET_POKEMONS } from "../actions/type"
 
 const initialState = {
     list: []
@@ -6,7 +6,7 @@ const initialState = {
 
 const pokemonReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_POKEMON:
+        case SET_POKEMONS:
             return {
                 ...state,
                 list: action.payload
